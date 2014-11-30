@@ -15,6 +15,9 @@ Cliente::Cliente() {
 
 }
 
+int Cliente::getId(){
+	return id;
+}
 
 string Cliente::getApellido()  {
 	return apellido;

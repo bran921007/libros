@@ -19,8 +19,8 @@ public:
 
 	void agregar(Cliente* cliente);
 	void listarClientes();
-	void eliminar();
-	void modificar();
+	void eliminar(int id);
+	void modificar(int id);
 	void buscar();
 	Cliente* getPrimerElemento();
 	Cliente* getUltimoElemento();
