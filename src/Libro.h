@@ -17,21 +17,24 @@ private:
 	string codigoLibro;
 	char estado;
 	int cantidad;
+	int precio;
 	Libro* siguienteLibro;
 
 public:
 	Libro();
-	void crearLibro(int id, string titulo, string autor, string codigo , char estado, int cantidad);
+	void crearLibro(int id, string titulo, string autor, string codigo , char estado, int cantidad, int precio);
 	void eliminarLibro(int id);
 	//void modificarCliente(int id, campo);
 	virtual ~Libro();
 	int getId();
 	int getCantidad();
+	int getPrecio();
 	char getEstado();
 	string getTitulo();
 	string getAutor();
 	Libro* getSiguienteLibro();
 	string getCodigoLibro();
+
 
 	void setId( int id);
 	void setTitulo(string titulo);
@@ -40,6 +43,7 @@ public:
 	void setCantidad(int cantidad);
 	void setSiguienteLibro(Libro* libro);
 	void setCodigoLibro( string codigoLibro);
+	void setPrecio(int precio);
 
 };
 

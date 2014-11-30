@@ -9,6 +9,7 @@
 #define LISTACLIENTES_H_
 
 #include "Cliente.h"
+#include <vector>
 
 class ListaClientes {
 private:
@@ -21,7 +22,7 @@ public:
 	void listarClientes();
 	void eliminar(int id);
 	void modificar(int id);
-	void buscar();
+	int buscar(vector<string> miVector, int tamano, string clave);
 	Cliente* getPrimerElemento();
 	Cliente* getUltimoElemento();
 	void setPrimerElemento( Cliente* primerElemento);

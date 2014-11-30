@@ -59,6 +59,7 @@ void ListaLibro::modificar(int id) {
 			cout << "3. Codigo de libro"  << endl;
 			cout << "4. Estado" << endl;
 			cout << "5. Cantidad"   << endl;
+			cout << "6. Precio"   << endl;
 			cout << "\nIntroduzca lo que desea cambiar: ";
 			cin >> tempOpcion;
 			switch(tempOpcion){
@@ -87,6 +88,11 @@ void ListaLibro::modificar(int id) {
 					cin >> tempOpcion;
 					libro->setCantidad(tempOpcion);
 					break;
+				case 6:
+					cout << "\nIntroduzca el nuevo precio: ";
+					cin >> tempOpcion;
+					libro->setPrecio(tempOpcion);
+					break;
 
 				default:
 					cout << "El numero introducido es incorrecto.";
@@ -108,9 +114,9 @@ void ListaLibro::listarLibro() {
 
 	while(libro != NULL){
 		if(libro->getEstado() == 'D' or libro->getEstado() == 'd'){
-			cout <<"\n" << libro->getId() << " - Título: " << libro->getTitulo() << "\nAutor: " << libro->getAutor() << "\nCódigo de libro: " << libro->getCodigoLibro() << "\nEstado: Disponible" << "\nCantidad: " << libro->getCantidad() << endl;
+			cout <<"\n" << libro->getId() << " - Título: " << libro->getTitulo() << "\nAutor: " << libro->getAutor() << "\nCódigo de libro: " << libro->getCodigoLibro() << "\nEstado: Disponible" << "\nCantidad: " << libro->getCantidad() <<"\nPrecio: RD$" <<libro->getPrecio() << endl;
 		}else{
-			cout <<"\n" << libro->getId() << " - Título: " << libro->getTitulo() << "\nAutor: " << libro->getAutor() << ",\nCódigo de libro: " << libro->getCodigoLibro() << "\nEstado: Vendido" << ",\nCantidad: " << libro->getCantidad() << endl;
+			cout <<"\n" << libro->getId() << " - Título: " << libro->getTitulo() << "\nAutor: " << libro->getAutor() << ",\nCódigo de libro: " << libro->getCodigoLibro() << "\nEstado: Vendido" << ",\nCantidad: " << libro->getCantidad() <<"\nPrecio: RD$" <<libro->getPrecio() << endl;
 		}
 		libro = libro->getSiguienteLibro();
 	}

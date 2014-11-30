@@ -13,6 +13,9 @@
 #include "ListaLibro.h"
 #include <stdio.h>
 #include <ctype.h>
+#include <vector>
+#include <algorithm>
+#include <sstream>
 using namespace std;
 
 
@@ -26,9 +29,11 @@ int main() {
 	int idLibros = 0;
 	int numItem = 0;
 	int cantidad = 0;
+	int precio = 0;
 	bool continuar = true;
 	bool volverMenu = true;
 	char estado;
+	char tempConfirmacion;
 	string nombre = "";
 	string apellido = "";
 	string direccion = "";
@@ -37,7 +42,6 @@ int main() {
 	string codigoLibro = "";
 
 
-	char tempConfirmacion;
 	ListaClientes* lista = new ListaClientes();
 	ListaLibro* listaLibro = new ListaLibro();
 
@@ -94,6 +98,40 @@ int main() {
 						}
 						break;
 
+					case 3:
+					{
+						string nombreCliente = "";
+						cout<<"Introduzca el nombre del cliente: "<<endl;
+						cin>>nombreCliente;
+						int contador = 0;
+						string clientes[] = {};
+
+						Cliente* busquedaCliente = lista->getPrimerElemento();
+
+						while(busquedaCliente != NULL){
+							clientes[contador] = busquedaCliente->getNombre();
+							//cout << cliente[contador] << endl;
+							busquedaCliente = busquedaCliente->getSiguienteCliente();
+							contador++;
+							//cout<<contador<<endl;
+
+						}
+						//cout<<nombreCliente<<endl;
+
+						vector<string> myvector(clientes, clientes+(sizeof(clientes)/sizeof(clientes[0])));
+						sort(myvector.begin(), myvector.end());
+						if(lista->buscar(myvector, myvector.size(), nombreCliente) > -1){
+								cout<<"Found "+nombreCliente<<endl;
+						}
+							else
+							{
+								cout<<"Not found "+nombreCliente<<endl;
+							}
+
+
+					}
+						break;
+
 					case 4:
 
 						lista->listarClientes();
@@ -133,7 +171,7 @@ int main() {
 					cout << "3 - Buscar Libro" << endl;
 					cout << "4 - Modificar Libro" << endl;
 					//cout << "5 - Cambiar Libro" << endl;
-					cout << "6 - Volver al menu principal\n" << endl;
+					cout << "5 - Volver al menu principal\n" << endl;
 
 					cout << "Seleccione una opcion: ";
 					cin >> opcionClientes;
@@ -159,12 +197,14 @@ int main() {
 								cout << "Cantidad: ";
 								cin >> cantidad;
 
+								cout << "Precio: ";
+								cin >> precio;
 								/*cout << "Dirección: ";
 								cin >> estado;*/
 
 								Libro* libro = new Libro();
 								idLibros++;
-								libro->crearLibro(idLibros, titulo, autor, codigoLibro, 'D', cantidad );
+								libro->crearLibro(idLibros, titulo, autor, codigoLibro, 'D', cantidad ,precio);
 								listaLibro->agregar(libro);
 							}
 							break;
@@ -189,7 +229,7 @@ int main() {
 							}
 							break;*/
 
-						case 6:
+						case 5:
 							{
 								cout <<"Saliendo..." << endl;
 								volverMenu = false;

@@ -40,6 +40,10 @@ Libro* Libro::getSiguienteLibro() {
 string Libro::getCodigoLibro()  {
 	return codigoLibro;
 }
+int Libro::getPrecio()  {
+	return precio;
+}
+
 
 void Libro::setSiguienteLibro(Libro* libro) {
 	this->siguienteLibro = libro;
@@ -68,14 +72,18 @@ void Libro::setEstado(char estado){
 void Libro::setCantidad(int cantidad){
 	this->cantidad = cantidad;
 }
+void Libro::setPrecio(int precio){
+	this->precio = precio;
+}
 
-void Libro::crearLibro(int id, string titulo, string autor, string codigoLibro, char estado, int cantidad) {
+void Libro::crearLibro(int id, string titulo, string autor, string codigoLibro, char estado, int cantidad,int precio) {
 	this->id = id;
 	this->titulo = titulo;
 	this->autor = autor;
 	this->codigoLibro = codigoLibro;
 	this->estado = estado;
 	this->cantidad = cantidad;
+	this->precio = precio;
 
 }
 
