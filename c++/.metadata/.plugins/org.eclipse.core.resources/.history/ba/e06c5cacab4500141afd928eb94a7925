@@ -1,0 +1,77 @@
+
+/*
+#include <iostream>
+#include <cstdlib>
+*/
+#include "Articulo.h";
+using namespace itla;
+
+int main() {
+		Articulo* lista = new Articulo();
+		Nodo* nodo = new Nodo();
+
+		int opt;
+
+		string articulo;
+		int cantidad;
+
+		opt = lista->menu();
+		switch(opt){
+
+		case 1:
+
+		break;
+
+		case 2:
+			//char input[100];
+			cout << "Introduce el articulo " << endl;
+			//getline(cin, articulo);
+			cin >> articulo;
+			cout << "Introduce la cantidad " << endl;
+			cin >> cantidad;
+								//Nodo*
+								//cout << articulo << endl;
+
+			nodo->setArticulo(articulo);
+			nodo->setCantidad(cantidad);
+
+			lista->introducirArticulo(nodo);
+			opt = lista->menu();
+		break;
+
+		case 3:
+		break;
+
+		case 4:
+		break;
+
+		}
+
+
+
+
+		Nodo* i = lista->getPrimerArticulo();
+		while(i != NULL)
+		{
+			cout << i->getArticulo() + " " << i->getCantidad()<< endl;
+			delete i;
+			i = i->getSiguiente();
+		}
+
+
+		/*Nodo* arroz = new Nodo("Arroz");
+		Nodo* habichuela = new Nodo("Habichuela");
+		Nodo* carne = new Nodo("carne");
+		listaDeCompras->introducirArticulo(arroz);
+		listaDeCompras->introducirArticulo(habichuela);
+		listaDeCompras->introducirArticulo(carne);
+
+		Nodo* i = listaDeCompras->getPrimerArticulo();
+		while(i != NULL)
+		{
+			cout << i->getArticulo() << endl;
+			delete i;
+			i = i->getSiguiente();
+		}*/
+		return 0;
+}

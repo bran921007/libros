@@ -1,0 +1,79 @@
+#include "Agenda.h"
+using namespace itla;
+
+int main() {
+
+	Nodo* aux = NULL;
+	Nodo* temp = NULL;
+	Agenda* agenda = new Agenda();
+	string nombre = "";
+	int telefono = 0;
+
+
+	cout << "Ingrese el nombre" << endl;
+	cin >> nombre;
+	cout << "Ingrese el numero" <<endl;
+	cin >> telefono;
+	//archivo << "Contacto agregado" <<endl;
+
+	aux = new Nodo();
+	aux->setNombre(nombre);
+	aux->setTelefono(telefono);
+
+	agenda->agregar(aux);
+
+	system("pause>null");
+
+	temp = agenda->getPrimerElemento();
+	string nom ="";
+	int tel = 0;
+
+	ifstream lectura("contactos.txt");
+
+
+	while(!lectura.eof()and(temp != NULL))
+	{
+
+		lectura >> nom >> tel;
+		aux->setNombre(nom);
+		aux->setTelefono(tel);
+		agenda->agregar(aux);
+		cout << temp->getNombre() << "\t" << temp->getTelefono() << endl;
+		delete temp;
+		temp = temp->getSiguiente();
+
+	}
+
+
+/*	while(temp != NULL)
+	{
+
+			temp->setNombre(nom);
+			temp->setTelefono(tel);
+			cout << temp->getNombre() << "\t" << temp->getTelefono() << endl;
+			delete temp;
+			temp = temp->getSiguiente();
+			if((temp == NULL)and(!lectura.eof()))
+			{
+				while(!lectura.eof())
+				{
+					lectura >> nom >> tel;
+					temp->setNombre(nom);
+					temp->setTelefono(tel);
+				}
+			}
+		else{
+			break;
+		}
+
+	}*/
+	lectura.close();
+
+
+	//agenda->lista();
+
+	//archivo.close();
+
+	system("cls");
+	return 0;
+}

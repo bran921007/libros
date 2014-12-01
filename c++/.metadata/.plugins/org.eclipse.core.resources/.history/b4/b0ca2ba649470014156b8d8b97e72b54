@@ -1,0 +1,29 @@
+/*
+ * Nodo.h
+ *
+ *  Created on: 28/9/2014
+ *      Author: Franco
+ */
+
+#ifndef NODO_H_
+#define NODO_H_
+
+namespace itla {
+
+class Nodo {
+
+private:
+	int Numero;
+	Nodo* Enlace;
+public:
+	Nodo();
+	void Set_numero(int);
+	void Set_enlace(Nodo*);
+	int Get_numero();
+	Nodo* Get_enlace();
+	virtual ~Nodo();
+};
+
+} /* namespace itla */
+
+#endif /* NODO_H_ */

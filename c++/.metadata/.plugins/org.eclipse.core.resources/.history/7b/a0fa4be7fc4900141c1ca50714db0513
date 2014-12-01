@@ -1,0 +1,47 @@
+/*
+ * Agenda.h
+ *
+ *  Created on: 30/9/2014
+ *      Author: Franco
+ */
+
+#ifndef AGENDA_H_
+#define AGENDA_H_
+#include "Nodo.h"
+
+namespace itla {
+
+class Agenda {
+
+private:
+	Nodo* primerElemento;
+	Nodo* ultimoElemento;
+
+public:
+	Agenda();
+	virtual ~Agenda();
+	void agregar(Nodo*);
+	void lista();
+	void actualizar(Nodo*);
+	void borrar(Nodo*);
+
+	Nodo* getPrimerElemento(){
+		return primerElemento;
+	}
+
+	void setPrimerElemento(Nodo* primerElemento) {
+		this->primerElemento = primerElemento;
+	}
+
+	Nodo* getUltimoElemento(){
+		return ultimoElemento;
+	}
+
+	void setUltimoElemento(Nodo* ultimoElemento) {
+		this->ultimoElemento = ultimoElemento;
+	}
+};
+
+} /* namespace itla */
+
+#endif /* AGENDA_H_ */

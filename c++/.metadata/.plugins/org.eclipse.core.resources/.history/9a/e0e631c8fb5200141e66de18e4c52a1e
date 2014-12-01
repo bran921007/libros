@@ -1,0 +1,21 @@
+/*
+ * Arbol.cpp
+ *
+ *  Created on: 13/10/2014
+ *      Author: Franco
+ */
+
+#include "Arbol.h"
+
+namespace itla {
+
+Arbol::Arbol() {
+	// TODO Auto-generated constructor stub
+
+}
+
+Arbol::~Arbol() {
+	// TODO Auto-generated destructor stub
+}
+
+} /* namespace itla */

@@ -1,0 +1,74 @@
+/*
+ * Nodo.h
+ *
+ *  Created on: 13/10/2014
+ *      Author: Franco
+ */
+
+#ifndef NODO_H_
+#define NODO_H_
+#include <iostream>
+#include <string>
+#include <cstdlib>
+using namespace std;
+
+
+namespace itla {
+
+class Nodo {
+
+private:
+	string nombre;
+	int hijos;
+	Nodo* siguiente;
+	Nodo* primerHijo;
+	Nodo* ultimoHijo;
+
+public:
+	Nodo();
+	virtual ~Nodo();
+
+	int getHijos() const {
+		return hijos;
+	}
+
+	void setHijos(int hijos) {
+		this->hijos = hijos;
+	}
+
+	const string& getNombre() const {
+		return nombre;
+	}
+
+	void setNombre(const string& nombre) {
+		this->nombre = nombre;
+	}
+
+	const Nodo*& getPrimerHijo() const {
+		return primerHijo;
+	}
+
+	void setPrimerHijo(const Nodo*& primerHijo) {
+		this->primerHijo = primerHijo;
+	}
+
+	const Nodo*& getSiguiente() const {
+		return siguiente;
+	}
+
+	void setSiguiente(const Nodo*& siguiente) {
+		this->siguiente = siguiente;
+	}
+
+	const Nodo*& getUltimoHijo() const {
+		return ultimoHijo;
+	}
+
+	void setUltimoHijo(const Nodo*& ultimoHijo) {
+		this->ultimoHijo = ultimoHijo;
+	}
+};
+
+} /* namespace itla */
+
+#endif /* NODO_H_ */

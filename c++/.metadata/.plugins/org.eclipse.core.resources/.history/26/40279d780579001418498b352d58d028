@@ -1,0 +1,50 @@
+/*
+ * ListaOrdenes.h
+ *
+ *  Created on: 30/11/2014
+ *      Author: Franco
+ */
+
+#ifndef LISTAORDENES_H_
+#define LISTAORDENES_H_
+#include "Ordenes.h"
+
+
+
+class ListaOrdenes {
+
+private:
+	Ordenes* ultimoElemento;
+	Ordenes* primerElemento;
+	int opcion;
+
+public:
+	void agregarOrden(Ordenes*);
+	Ordenes* obtener();
+	Ordenes* buscar(int);
+	Ordenes* extraer();
+	int menu();
+
+	ListaOrdenes();
+	virtual ~ListaOrdenes();
+
+	Ordenes* getPrimerElemento() {
+		return primerElemento;
+	}
+
+	void setPrimerElemento(Ordenes* primerElemento) {
+		this->primerElemento = primerElemento;
+	}
+
+	Ordenes* getUltimoElemento() {
+		return ultimoElemento;
+	}
+
+	void setUltimoElemento(Ordenes* ultimoElemento) {
+		this->ultimoElemento = ultimoElemento;
+	}
+};
+
+ /* namespace itla */
+
+#endif /* LISTAORDENES_H_ */

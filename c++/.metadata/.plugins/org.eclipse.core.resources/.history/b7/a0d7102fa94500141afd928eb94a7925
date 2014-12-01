@@ -1,0 +1,56 @@
+/*
+ * Articulo.cpp
+ *
+ *  Created on: 16/9/2014
+ *      Author: Franco
+ */
+
+#include "Articulo.h"
+
+namespace itla {
+
+Articulo::Articulo() {
+	primerArticulo = NULL;
+	ultimoArticulo = NULL;
+	/*primerCantidad = NULL;
+	ultimoCantidad = NULL;
+*/
+}
+
+void Articulo::introducirArticulo(Nodo* nodo) {
+
+		if(primerArticulo == NULL)
+		{
+			primerArticulo = nodo;
+			ultimoArticulo = nodo;
+
+
+			/*primerCantidad = nodo->cantidad;
+			ultimoCantidad = nodo->cantidad
+*/		}else{
+			ultimoArticulo->setSiguiente(nodo);
+			ultimoArticulo = nodo;
+		}
+}
+
+void Articulo::eliminarArticulo() {
+}
+
+void Articulo::listarArticulo() {
+}
+
+/*
+void Articulo::menu(int opcion) {
+
+			cout << "1- Listar articulos" << endl;
+			cout << "2- Introducir articulo" << endl;
+			cout << "3- Eliminar articulo" << endl;
+			cout << "4- salir" << endl;
+}
+*/
+
+Articulo::~Articulo() {
+	// TODO Auto-generated destructor stub
+}
+
+} /* namespace std */

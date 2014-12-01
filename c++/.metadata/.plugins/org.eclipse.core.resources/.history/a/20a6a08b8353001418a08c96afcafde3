@@ -1,0 +1,50 @@
+
+#include "Arbol.h"
+using namespace itla;
+
+int main() {
+
+	Nodo* a = NULL;
+	Nodo* b = NULL;
+	Nodo* c = NULL;
+	Nodo* d = NULL;
+	Nodo* e = NULL;
+	Nodo* f = NULL;
+
+	a = new Nodo();
+	a->setNombre("Franco");
+	a->setHijos(0);
+
+	b = new Nodo();
+	b->setNombre("Albert");
+	b->setHijos(0);
+
+	c = new Nodo();
+	c->setNombre("Rodri");
+	c->setHijos(0);
+
+	d = new Nodo();
+	d->setNombre("d");
+	d->setHijos(0);
+
+	e = new Nodo();
+	e->setNombre("e");
+	e->setHijos(0);
+
+	f = new Nodo();
+	f->setNombre("f");
+	f->setHijos(0);
+
+	a->agregarHijo(b);
+	a->agregarHijo(c);
+	a->agregarHijo(d);
+	b->agregarHijo(e);
+	b->agregarHijo(f);
+
+	Arbol* arbol = new Arbol(a);
+	arbol->recorrer(a);
+	//arbol->agregarHijo();
+	//arbol->recorrer()
+
+	return 0;
+}

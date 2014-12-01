@@ -1,0 +1,21 @@
+/*
+ * Lista.h
+ *
+ *  Created on: 28/9/2014
+ *      Author: Franco
+ */
+
+#ifndef LISTA_H_
+#define LISTA_H_
+
+namespace itla {
+
+class Lista {
+public:
+	Lista();
+	virtual ~Lista();
+};
+
+} /* namespace itla */
+
+#endif /* LISTA_H_ */

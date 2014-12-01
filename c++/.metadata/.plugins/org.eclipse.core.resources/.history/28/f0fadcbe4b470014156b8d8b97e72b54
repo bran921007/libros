@@ -1,0 +1,39 @@
+/*
+ * Lista.cpp
+ *
+ *  Created on: 28/9/2014
+ *      Author: Franco
+ */
+
+#include "Lista.h"
+
+namespace itla {
+
+Lista::Lista() {
+	// TODO Auto-generated constructor stub
+
+}
+
+void Lista::Set_cabeza(Nodo*) {
+}
+
+Nodo* Lista::Get_cabeza() {
+}
+
+Nodo* Lista::Get_ultimo() {
+}
+
+void Lista::Agregar(Nodo*) {
+}
+
+Nodo* Lista::Buscar(int int1) {
+}
+
+void Lista::Eliminar(int int1) {
+}
+
+Lista::~Lista() {
+	// TODO Auto-generated destructor stub
+}
+
+} /* namespace itla */

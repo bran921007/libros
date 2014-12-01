@@ -1,0 +1,83 @@
+
+#ifndef ORDENES_H_
+#define ORDENES_H_
+#include <string>;
+using namespace std;
+
+namespace itla {
+
+class Ordenes {
+
+private:
+	int id;
+		string titulo;
+		string autor;
+		string codigoLibro;
+		char estado;
+		int cantidad;
+		Libro* siguienteOrden;
+
+public:
+	Ordenes();
+	virtual ~Ordenes();
+
+	string getAutor() {
+		return autor;
+	}
+
+	void setAutor(string autor) {
+		this->autor = autor;
+	}
+
+	int getCantidad() {
+		return cantidad;
+	}
+
+	void setCantidad(int cantidad) {
+		this->cantidad = cantidad;
+	}
+
+	string getCodigoLibro() {
+		return codigoLibro;
+	}
+
+	void setCodigoLibro(string codigoLibro) {
+		this->codigoLibro = codigoLibro;
+	}
+
+	char getEstado() {
+		return estado;
+	}
+
+	void setEstado(char estado) {
+		this->estado = estado;
+	}
+
+	int getId() {
+		return id;
+	}
+
+	void setId(int id) {
+		this->id = id;
+	}
+
+	Libro* getSiguienteOrden() {
+		return siguienteOrden;
+	}
+
+	void setSiguienteOrden(Libro* siguienteOrden) {
+		this->siguienteOrden = siguienteOrden;
+	}
+
+	string getTitulo() {
+		return titulo;
+	}
+
+	void setTitulo(string titulo) {
+		this->titulo = titulo;
+	}
+};
+
+} /* namespace itla */
+
+#endif /* ORDENES_H_ */

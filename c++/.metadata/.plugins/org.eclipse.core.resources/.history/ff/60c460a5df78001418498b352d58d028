@@ -1,0 +1,22 @@
+/*
+ * ListaOrdenes.h
+ *
+ *  Created on: 30/11/2014
+ *      Author: Franco
+ */
+
+#ifndef LISTAORDENES_H_
+#define LISTAORDENES_H_
+#include "Ordenes.h"
+
+namespace itla {
+
+class ListaOrdenes {
+public:
+	ListaOrdenes();
+	virtual ~ListaOrdenes();
+};
+
+} /* namespace itla */
+
+#endif /* LISTAORDENES_H_ */

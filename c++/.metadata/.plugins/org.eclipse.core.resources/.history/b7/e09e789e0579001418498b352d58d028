@@ -1,0 +1,74 @@
+/*
+ * ListaOrdenes.cpp
+ *
+ *  Created on: 30/11/2014
+ *      Author: Franco
+ */
+
+#include "ListaOrdenes.h"
+
+
+ListaOrdenes::ListaOrdenes() {
+	// TODO Auto-generated constructor stub
+	primerElemento = NULL;
+	ultimoElemento =NULL;
+	opcion = 0;
+
+}
+
+void ListaOrdenes::agregarOrden(Ordenes* nodo) {
+	if(primerElemento == NULL)
+		{
+			ultimoElemento = nodo;
+			primerElemento = nodo;
+		}else{
+
+			ultimoElemento->setSiguienteOrden(nodo);
+			ultimoElemento = nodo;
+		}
+}
+
+Ordenes* ListaOrdenes::obtener() {
+}
+
+Ordenes* ListaOrdenes::buscar(int id) {
+	Ordenes* buscar = getUltimoElemento();
+	while((buscar != NULL)and(buscar->getId() != id))
+	{
+	buscar = buscar->getSiguienteOrden();
+	}
+	return buscar;
+}
+
+Ordenes* ListaOrdenes::extraer() {
+	Ordenes* retorno = primerElemento;
+		if(primerElemento == NULL)
+		{
+			return NULL;
+		}else if(primerElemento ->getSiguienteOrden() != NULL){
+			primerElemento = primerElemento -> getSiguienteOrden();
+		}else{
+			primerElemento = NULL;
+		}
+		return retorno;
+}
+
+void ListaOrdenes::menu() {
+
+	int opcion=0;
+	do{
+	cout << "1- Crear orden" << endl;
+	cout << "2- Historial de orden" <<endl;
+	cout << "3- Buscar orden" <<endl;
+
+	cin >> opcion;
+	}while(opcion >3 && opcion<1);
+	//return opcion;
+
+}
+
+ListaOrdenes::~ListaOrdenes() {
+	// TODO Auto-generated destructor stub
+}
+
+/* namespace itla */

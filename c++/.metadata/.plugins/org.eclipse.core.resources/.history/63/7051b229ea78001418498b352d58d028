@@ -1,0 +1,28 @@
+/*
+ * Ordenes.cpp
+ *
+ *  Created on: 30/11/2014
+ *      Author: Franco
+ */
+
+#include "Ordenes.h"
+using namespace std;
+
+Ordenes::Ordenes() {
+	// TODO Auto-generated constructor stub
+		id=0;
+		titulo ='';
+		autor ='';
+		codigoLibro ='';
+		estado=0;
+		cantidad=0;
+		siguienteOrden=NULL;
+		precio =0;
+
+}
+
+Ordenes::~Ordenes() {
+	// TODO Auto-generated destructor stub
+}
+
+ /* namespace itla */
