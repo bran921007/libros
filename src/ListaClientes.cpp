@@ -87,25 +87,32 @@ void ListaClientes::modificar(int id) {
 	}
 }
 
-int ListaClientes::buscar(vector<string> miVector, int tamano, string clave) {
-	  int Iarriba = tamano-1;
-	  int Iabajo = 0;
-	  int Icentro=0;
-	  cout<<"hahhahahaha"<<endl;
-	  while (Iabajo <= Iarriba)
-	    {
-	      Icentro = (Iarriba + Iabajo)/2;
-	      if (miVector.at(Icentro) == clave)
-	    	  	return 1;
-	      else{
-			 if (clave.compare(miVector.at(Icentro)) > 0)
-			   Iarriba=Icentro-1;
-			 else{
-			   Iabajo=Icentro+1;
-			 }
-	      }
-	    }
-	return -1;
+Cliente* ListaClientes::buscarCliente(int id) {
+	Cliente* buscar = getUltimoElemento();
+	while((buscar != NULL)and(buscar->getId() != id))
+	{
+		buscar = buscar->getSiguienteCliente();
+	}
+	return buscar;
+
+//	  int Iarriba = tamano-1;
+//	  int Iabajo = 0;
+//	  int Icentro=0;
+//	  cout<<"hahhahahaha"<<endl;
+//	  while (Iabajo <= Iarriba)
+//	    {
+//	      Icentro = (Iarriba + Iabajo)/2;
+//	      if (miVector.at(Icentro) == clave)
+//	    	  	return 1;
+//	      else{
+//			 if (clave.compare(miVector.at(Icentro)) > 0)
+//			   Iarriba=Icentro-1;
+//			 else{
+//			   Iabajo=Icentro+1;
+//			 }
+//	      }
+//	    }
+//	return -1;
 }
 
 void ListaClientes::listarClientes() {

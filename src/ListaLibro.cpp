@@ -86,6 +86,11 @@ void ListaLibro::modificar(int id) {
 				case 5:
 					cout << "\nIntroduzca la nueva cantidad: ";
 					cin >> tempOpcion;
+					if(tempOpcion == 0){
+						libro->setEstado('V');
+					}else{
+						libro->setEstado('D');
+					}
 					libro->setCantidad(tempOpcion);
 					break;
 				case 6:
@@ -103,7 +108,13 @@ void ListaLibro::modificar(int id) {
 	}
 }
 
-void ListaLibro::buscar() {
+Libro* ListaLibro::buscarLibro(int id) {
+	Libro* buscar = getUltimoElemento();
+	while((buscar != NULL)and(buscar->getId() != id))
+	{
+		buscar = buscar->getSiguienteLibro();
+	}
+	return buscar;
 }
 
 void ListaLibro::listarLibro() {
@@ -120,6 +131,35 @@ void ListaLibro::listarLibro() {
 		}
 		libro = libro->getSiguienteLibro();
 	}
+}
+
+void ListaLibro::listarLibroOrdenes() {
+	Libro* libro = primerElemento;
+	if(libro == NULL){
+		cout << "Aún no se han agregado Libros. " << endl;
+	}
+
+	while(libro != NULL){
+		if(libro->getEstado() == 'D' or libro->getEstado() == 'd'){
+			cout <<"\n" << libro->getId() << " - Título: " << libro->getTitulo() << "\nAutor: " << libro->getAutor() << "\nCódigo de libro: " << libro->getCodigoLibro() << "\nEstado: Disponible" << "\nCantidad: " << libro->getCantidad() <<"\nPrecio: RD$" <<libro->getPrecio() << endl;
+		}
+		libro = libro->getSiguienteLibro();
+	}
+}
+
+bool ListaLibro::comprobarParaOrdenes() {
+	Libro* libro = primerElemento;
+	if(libro == NULL){
+		cout << "Aún no se han agregado Libros. " << endl;
+	}
+
+	while(libro != NULL){
+		if(libro->getEstado() == 'D' or libro->getEstado() == 'd'){
+			return true;
+		}
+		libro = libro->getSiguienteLibro();
+	}
+	return false;
 }
 
 Libro* ListaLibro::getPrimerElemento() {

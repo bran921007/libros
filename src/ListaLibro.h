@@ -18,9 +18,11 @@ public:
 	ListaLibro();
 	void agregar(Libro* libro);
 	void listarLibro();
+	void listarLibroOrdenes();
+	bool comprobarParaOrdenes();
 //	void cambiarEstado(int id);
 	void modificar(int id);
-	void buscar();
+	Libro* buscarLibro(int id);
 	Libro* getPrimerElemento();
 	Libro* getUltimoElemento();
 	void setPrimerElemento( Libro* primerElemento);

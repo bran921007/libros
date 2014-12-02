@@ -9,13 +9,17 @@
 #include <iostream>
 #include "Cliente.h"
 #include "Libro.h"
+#include "Orden.h"
 #include "ListaClientes.h"
 #include "ListaLibro.h"
+#include "ColaOrdenes.h"
 #include <stdio.h>
 #include <ctype.h>
 #include <vector>
 #include <algorithm>
 #include <sstream>
+
+using namespace itla;
 using namespace std;
 
 
@@ -44,6 +48,7 @@ int main() {
 
 	ListaClientes* lista = new ListaClientes();
 	ListaLibro* listaLibro = new ListaLibro();
+	ColaOrdenes* colaOrdenes = new ColaOrdenes();
 
 
 	while(continuar){
@@ -61,6 +66,7 @@ int main() {
 
 		switch(opcion){
 		case 1:
+			volverMenu = true;
 			while(volverMenu){
 				cout << "\nMenu de clientes:" << endl;
 				cout << "1 - Listar Clientes" << endl;
@@ -98,7 +104,7 @@ int main() {
 						}
 						break;
 
-					case 3:
+					/*case 3:
 					{
 						string nombreCliente = "";
 						cout<<"Introduzca el nombre del cliente: "<<endl;
@@ -130,7 +136,7 @@ int main() {
 
 
 					}
-						break;
+						break;*/
 
 					case 4:
 
@@ -155,7 +161,7 @@ int main() {
 
 					case 6:
 						{
-							cout <<"Saliendo..." << endl;
+							//cout <<"Saliendo..." << endl;
 							volverMenu = false;
 						}
 						break;
@@ -164,6 +170,7 @@ int main() {
 			break;
 
 			case 2:
+				volverMenu = true;
 				while(volverMenu){
 					cout << "\nMenu de Libros:" << endl;
 					cout << "1 - Listar Libros" << endl;
@@ -231,11 +238,101 @@ int main() {
 
 						case 5:
 							{
-								cout <<"Saliendo..." << endl;
+								//cout <<"Saliendo..." << endl;
 								volverMenu = false;
 							}
 							break;
 					}
+				}
+				break;
+
+			case 3:
+				volverMenu = true;
+				while(volverMenu){
+					cout << "\nMenu de Libros:" << endl;
+					cout << "1 - Ordenes pendientes." << endl;
+					cout << "2 - Crear nueva Orden." << endl;
+					cout << "3 - Despachar Orden." << endl;
+					cout << "4 - Historial de Ordenes." << endl;
+					cout << "5 - Volver al menu principal\n" << endl;
+
+					cout << "Seleccione una opcion: ";
+					cin >> opcionClientes;
+
+					switch(opcionClientes){
+						case 1:
+							if(colaOrdenes->getPrimerElemento() != NULL){
+								colaOrdenes->listarOrdenes();
+							}else{
+								cout << "Aun no hay ordenes pendientes." << endl;
+							}
+							break;
+
+						case 2:
+							if(listaLibro ->comprobarParaOrdenes()){
+								Cliente* tempCliente = new Cliente();
+								Libro* tempLibro = new Libro();
+
+								cout << "Crear orden\n" <<endl;
+								lista->listarClientes();
+								cout << "\nSeleccione el numero del cliente que desea hacer la orden: ";
+								cin >> id;
+								tempCliente = lista->buscarCliente(id);
+
+								listaLibro->listarLibroOrdenes();
+								cout << "\nSeleccione el numero del libro para agregar a la orden: ";
+								cin >> id;
+								tempLibro = listaLibro->buscarLibro(id);
+								introducirCantidad:
+								cout << "\nCantidad de libros: ";
+								cin >> cantidad;
+
+								if(cantidad <= tempLibro->getCantidad()){
+									tempLibro->setCantidad(tempLibro->getCantidad() - cantidad);
+									precio = (tempLibro->getPrecio() * cantidad);
+									if(tempLibro->getCantidad() == 0){
+										tempLibro->setEstado('V');
+									}
+									Orden* tempOrden = new Orden(tempCliente, tempLibro, precio, cantidad);
+									colaOrdenes->agregarOrden(tempOrden);
+								}else{
+									cout<< "\nNo hay suficientes libros para la orden.\nIntenta nuevamente." << endl;
+									goto introducirCantidad;
+								}
+							}else{
+								cout << "\nNo hay libros para vender." << endl;
+							}
+							break;
+
+						case 3:
+							if(colaOrdenes->getPrimerElemento() != NULL){
+								cout << "Despachando la primera orden." << endl;
+								despacharNuevaOrden:
+									colaOrdenes->despacharOrdenes();
+								cout << "Deseas despachar la siguiente orden? (s/n)" << endl;
+								cin >> tempConfirmacion;
+								if(tempConfirmacion == 's' || tempConfirmacion == 'S'){
+									goto despacharNuevaOrden;
+								}
+							}else{
+								cout << "\nAun no hay ordenes a despachar." << endl;
+							}
+							break;
+
+						case 4:
+
+							if(colaOrdenes->getRaizHistorial() != NULL){
+								colaOrdenes->listarOrdenesDespachadas();
+							}else{
+								cout << "\nAun no se han despachado ordenes." << endl;
+							}
+							break;
+
+						case 5:
+							volverMenu = false;
+							break;
+					}
+
 				}
 				break;
 

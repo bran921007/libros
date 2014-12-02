@@ -22,7 +22,7 @@ public:
 	void listarClientes();
 	void eliminar(int id);
 	void modificar(int id);
-	int buscar(vector<string> miVector, int tamano, string clave);
+	Cliente* buscarCliente(int id);
 	Cliente* getPrimerElemento();
 	Cliente* getUltimoElemento();
 	void setPrimerElemento( Cliente* primerElemento);
