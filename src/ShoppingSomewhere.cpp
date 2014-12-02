@@ -13,6 +13,7 @@
 #include "ListaClientes.h"
 #include "ListaLibro.h"
 #include "ColaOrdenes.h"
+#include "GuardarEnArchivo.h"
 #include <stdio.h>
 #include <ctype.h>
 #include <vector>
@@ -31,12 +32,10 @@ int main() {
 	int tempID = 0;
 	int id = 0;
 	int idLibros = 0;
-	int numItem = 0;
 	int cantidad = 0;
 	int precio = 0;
 	bool continuar = true;
 	bool volverMenu = true;
-	char estado;
 	char tempConfirmacion;
 	string nombre = "";
 	string apellido = "";
@@ -45,20 +44,21 @@ int main() {
 	string autor = "";
 	string codigoLibro = "";
 
-
-	ListaClientes* lista = new ListaClientes();
-	ListaLibro* listaLibro = new ListaLibro();
-	ColaOrdenes* colaOrdenes = new ColaOrdenes();
-
+	GuardarEnArchivo* guardar = new GuardarEnArchivo();
+	ListaClientes* lista = guardar->cargarClientes();
+	ListaLibro* listaLibro = guardar->cargarLibros();
+	ColaOrdenes* colaOrdenes = guardar->cargarOrdenes(lista, listaLibro);
+	id = lista->obtenerUltimoIdCliente();
+	idLibros = listaLibro->obtenerUltimoIdLibro();
 
 	while(continuar){
 
 
 		cout << "\n\nBienvenido a Shopping Somewhere\n" << endl;
-		cout << "MenÃº principal:" << endl;
+		cout << "Menú principal:" << endl;
 		cout << "1 - Clientes" << endl;
 		cout << "2 - Libros" << endl;
-		cout << "3 - Ã“rdenes" << endl;
+		cout << "3 - Órdenes" << endl;
 		cout << "4 - Salir\n" << endl;
 
 		cout << "Seleccione una opcion: ";
@@ -68,7 +68,7 @@ int main() {
 		case 1:
 			volverMenu = true;
 			while(volverMenu){
-				cout << "\nMenu de clientes:" << endl;
+				cout << "\nMenú de clientes:" << endl;
 				cout << "1 - Listar Clientes" << endl;
 				cout << "2 - Crear Cliente" << endl;
 				cout << "3 - Buscar Cliente" << endl;
@@ -87,14 +87,14 @@ int main() {
 
 					case 2:
 						{
-							cout << "CreaciÃ³n de clientes\n" << endl;
+							cout << "Creación de clientes\n" << endl;
 							cout << "Nombre: ";
 							cin >> nombre;
 
 							cout << "Apellido: ";
 							cin >> apellido;
 
-							cout << "DirecciÃ³n: ";
+							cout << "Dirección: ";
 							cin >> direccion;
 
 							Cliente* cliente = new Cliente();
@@ -104,49 +104,12 @@ int main() {
 						}
 						break;
 
-					/*case 3:
-					{
-						string nombreCliente = "";
-						cout<<"Introduzca el nombre del cliente: "<<endl;
-						cin>>nombreCliente;
-						int contador = 0;
-						string clientes[] = {};
-
-						Cliente* busquedaCliente = lista->getPrimerElemento();
-
-						while(busquedaCliente != NULL){
-							clientes[contador] = busquedaCliente->getNombre();
-							//cout << cliente[contador] << endl;
-							busquedaCliente = busquedaCliente->getSiguienteCliente();
-							contador++;
-							//cout<<contador<<endl;
-
-						}
-						//cout<<nombreCliente<<endl;
-
-						vector<string> myvector(clientes, clientes+(sizeof(clientes)/sizeof(clientes[0])));
-						sort(myvector.begin(), myvector.end());
-						if(lista->buscar(myvector, myvector.size(), nombreCliente) > -1){
-								cout<<"Found "+nombreCliente<<endl;
-						}
-							else
-							{
-								cout<<"Not found "+nombreCliente<<endl;
-							}
-
-
-					}
-						break;*/
-
-
 					case 3:
 						cout << "\nBuscar cliente." << endl;
+						cout << "\nDigite el nombre a buscar: ";
 						cin >> nombre;
-						Cliente* tempCliente = lista->buscarClientePorNombre(nombre);
-						if(tempCliente == NULL){
+						if(lista->buscarClientePorNombre(nombre) == 0){
 							cout << "\nEl cliente no se encuentra en la lista." << endl;
-						}else{
-							cout <<"\n" << tempCliente->getId() << " - " << tempCliente->getNombre() << " " << tempCliente->getApellido() << ", Direccion: " << tempCliente->getDireccion() << endl;
 						}
 						break;
 
@@ -186,7 +149,6 @@ int main() {
 					cout << "2 - Crear Libro" << endl;
 					cout << "3 - Buscar Libro" << endl;
 					cout << "4 - Modificar Libro" << endl;
-					//cout << "5 - Cambiar Libro" << endl;
 					cout << "5 - Volver al menu principal\n" << endl;
 
 					cout << "Seleccione una opcion: ";
@@ -215,13 +177,20 @@ int main() {
 
 								cout << "Precio: ";
 								cin >> precio;
-								/*cout << "DirecciÃ³n: ";
-								cin >> estado;*/
 
 								Libro* libro = new Libro();
 								idLibros++;
 								libro->crearLibro(idLibros, titulo, autor, codigoLibro, 'D', cantidad ,precio);
 								listaLibro->agregar(libro);
+							}
+							break;
+
+						case 3:
+							cout << "\nBuscar libros." << endl;
+							cout << "\nDigite el titulo del libro a buscar: ";
+							cin >> nombre;
+							if(listaLibro->buscarLibroPorTitulo(nombre) == 0){
+								cout << "\nEl libro no se encuentra en el sistema." << endl;
 							}
 							break;
 
@@ -233,23 +202,8 @@ int main() {
 							listaLibro->modificar(tempOpcion);
 							break;
 
-						/*case 5:
-
-							listaLibro->listarLibro();
-							cout << "\nElige el numero del libro a cambiar el estado: ";
-							cin >> tempID;
-							cout << "\nEsta seguro cambiar el estado (s/n): ";
-							cin >> tempConfirmacion;
-							if(tempConfirmacion == 's' || tempConfirmacion == 'S'){
-								listaLibro->cambiarEstado(tempID);
-							}
-							break;*/
-
 						case 5:
-							{
-								//cout <<"Saliendo..." << endl;
-								volverMenu = false;
-							}
+							volverMenu = false;
 							break;
 					}
 				}
@@ -350,12 +304,15 @@ int main() {
 
 			case 4:
 
-				cout <<"Saliendo..." << endl;
 				continuar = false;
+				guardar->guardarClientes(lista);
+				guardar->guardarLibros(listaLibro);
+				guardar->guardarOrdenes(colaOrdenes);
+				cout << "La aplicacion se ha cerrado correctamente.\ny todos los datos fueron guardados." << endl;
 				break;
 
 			default:
-				cout <<"'"<< opcion <<"' no es un valor vÃ¡lido" << endl;
+				cout <<"'"<< opcion <<"' no es un valor válido" << endl;
 				break;
 		}
 	}

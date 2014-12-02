@@ -64,7 +64,7 @@ void ListaLibro::modificar(int id) {
 			cin >> tempOpcion;
 			switch(tempOpcion){
 				case 1:
-					cout << "\nIntroduzca el nuevo tÃ­tulo: ";
+					cout << "\nIntroduzca el nuevo título: ";
 					cin >> tempModificacion;
 					libro->setTitulo(tempModificacion);
 					break;
@@ -109,25 +109,52 @@ void ListaLibro::modificar(int id) {
 }
 
 Libro* ListaLibro::buscarLibro(int id) {
-	Libro* buscar = getUltimoElemento();
-	while((buscar != NULL)and(buscar->getId() != id))
+	Libro* buscar = getPrimerElemento();
+	while((buscar != NULL) && (buscar->getId() != id))
 	{
 		buscar = buscar->getSiguienteLibro();
 	}
 	return buscar;
 }
 
+int ListaLibro::obtenerUltimoIdLibro() {
+	int contador = 0;
+	Libro* buscar = getPrimerElemento();
+	while((buscar != NULL))
+	{
+		contador++;
+		buscar = buscar->getSiguienteLibro();
+	}
+	return contador;
+}
+
+int ListaLibro::buscarLibroPorTitulo(string titulo) {
+	Libro* tempLibro = primerElemento;
+	int contador = 0;
+	while(tempLibro != NULL){
+		if(tempLibro->getTitulo() == titulo){
+			if(contador == 0){
+				cout << "Lista de libros encontrados con el nombre: " << titulo << endl;
+			}
+			cout <<"\n" << tempLibro->getId() << " - Título: " << tempLibro->getTitulo() << "\nAutor: " << tempLibro->getAutor() << "\nCódigo de libro: " << tempLibro->getCodigoLibro() << "\nEstado: Disponible" << "\nCantidad: " << tempLibro->getCantidad() <<"\nPrecio: RD$" <<tempLibro->getPrecio() << endl;
+			contador++;
+		}
+		tempLibro = tempLibro->getSiguienteLibro();
+	}
+	return contador;
+}
+
 void ListaLibro::listarLibro() {
 	Libro* libro = primerElemento;
 	if(libro == NULL){
-		cout << "AÃºn no se han agregado Libros. " << endl;
+		cout << "Aún no se han agregado Libros. " << endl;
 	}
 
 	while(libro != NULL){
 		if(libro->getEstado() == 'D' or libro->getEstado() == 'd'){
-			cout <<"\n" << libro->getId() << " - TÃ­tulo: " << libro->getTitulo() << "\nAutor: " << libro->getAutor() << "\nCÃ³digo de libro: " << libro->getCodigoLibro() << "\nEstado: Disponible" << "\nCantidad: " << libro->getCantidad() <<"\nPrecio: RD$" <<libro->getPrecio() << endl;
+			cout <<"\n" << libro->getId() << " - Título: " << libro->getTitulo() << "\nAutor: " << libro->getAutor() << "\nCódigo de libro: " << libro->getCodigoLibro() << "\nEstado: Disponible" << "\nCantidad: " << libro->getCantidad() <<"\nPrecio: RD$" <<libro->getPrecio() << endl;
 		}else{
-			cout <<"\n" << libro->getId() << " - TÃ­tulo: " << libro->getTitulo() << "\nAutor: " << libro->getAutor() << ",\nCÃ³digo de libro: " << libro->getCodigoLibro() << "\nEstado: Vendido" << ",\nCantidad: " << libro->getCantidad() <<"\nPrecio: RD$" <<libro->getPrecio() << endl;
+			cout <<"\n" << libro->getId() << " - Título: " << libro->getTitulo() << "\nAutor: " << libro->getAutor() << ",\nCódigo de libro: " << libro->getCodigoLibro() << "\nEstado: Vendido" << ",\nCantidad: " << libro->getCantidad() <<"\nPrecio: RD$" <<libro->getPrecio() << endl;
 		}
 		libro = libro->getSiguienteLibro();
 	}
@@ -136,12 +163,12 @@ void ListaLibro::listarLibro() {
 void ListaLibro::listarLibroOrdenes() {
 	Libro* libro = primerElemento;
 	if(libro == NULL){
-		cout << "AÃºn no se han agregado Libros. " << endl;
+		cout << "Aún no se han agregado Libros. " << endl;
 	}
 
 	while(libro != NULL){
 		if(libro->getEstado() == 'D' or libro->getEstado() == 'd'){
-			cout <<"\n" << libro->getId() << " - TÃ­tulo: " << libro->getTitulo() << "\nAutor: " << libro->getAutor() << "\nCÃ³digo de libro: " << libro->getCodigoLibro() << "\nEstado: Disponible" << "\nCantidad: " << libro->getCantidad() <<"\nPrecio: RD$" <<libro->getPrecio() << endl;
+			cout <<"\n" << libro->getId() << " - Título: " << libro->getTitulo() << "\nAutor: " << libro->getAutor() << "\nCódigo de libro: " << libro->getCodigoLibro() << "\nEstado: Disponible" << "\nCantidad: " << libro->getCantidad() <<"\nPrecio: RD$" <<libro->getPrecio() << endl;
 		}
 		libro = libro->getSiguienteLibro();
 	}
@@ -150,7 +177,7 @@ void ListaLibro::listarLibroOrdenes() {
 bool ListaLibro::comprobarParaOrdenes() {
 	Libro* libro = primerElemento;
 	if(libro == NULL){
-		cout << "AÃºn no se han agregado Libros. " << endl;
+		cout << "Aún no se han agregado Libros. " << endl;
 	}
 
 	while(libro != NULL){

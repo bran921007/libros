@@ -88,52 +88,50 @@ void ListaClientes::modificar(int id) {
 }
 
 Cliente* ListaClientes::buscarCliente(int id) {
-	Cliente* buscar = getUltimoElemento();
-	while((buscar != NULL)and(buscar->getId() != id))
+	Cliente* buscar = getPrimerElemento();
+	while((buscar != NULL) && (buscar->getId() != id))
 	{
 		buscar = buscar->getSiguienteCliente();
 	}
 	return buscar;
-
-//	  int Iarriba = tamano-1;
-//	  int Iabajo = 0;
-//	  int Icentro=0;
-//	  cout<<"hahhahahaha"<<endl;
-//	  while (Iabajo <= Iarriba)
-//	    {
-//	      Icentro = (Iarriba + Iabajo)/2;
-//	      if (miVector.at(Icentro) == clave)
-//	    	  	return 1;
-//	      else{
-//			 if (clave.compare(miVector.at(Icentro)) > 0)
-//			   Iarriba=Icentro-1;
-//			 else{
-//			   Iabajo=Icentro+1;
-//			 }
-//	      }
-//	    }
-//	return -1;
 }
 
-Cliente* ListaClientes::buscarClientePorNombre(string nombre) {
+int ListaClientes::obtenerUltimoIdCliente() {
+	int contador = 0;
+	Cliente* buscar = getPrimerElemento();
+	while((buscar != NULL))
+	{
+		contador++;
+		buscar = buscar->getSiguienteCliente();
+	}
+	return contador;
+}
+
+int ListaClientes::buscarClientePorNombre(string nombre) {
 	Cliente* tempCliente = primerElemento;
-	while(tempCliente != NULL && tempCliente->getNombre() != nombre){
+	int contador = 0;
+	while(tempCliente != NULL){
+		if(tempCliente->getNombre() == nombre){
+			if(contador == 0){
+				cout << "Lista de clientes encontrados con el nombre: " << nombre << endl;
+			}
+			cout <<"\n" << tempCliente->getId() << " - " << tempCliente->getNombre() << " " << tempCliente->getApellido() << ", Direccion: " << tempCliente->getDireccion() << endl;
+			contador++;
+		}
 		tempCliente = tempCliente->getSiguienteCliente();
 	}
-	return tempCliente;
+	return contador;
 }
 
 void ListaClientes::listarClientes() {
 	Cliente* cliente = primerElemento;
 	if(cliente == NULL){
 		cout << "Aún no se han agregado clientes.\n " << endl;
-	}
-
-	while(cliente != NULL){
-
-		cout <<"\n" << cliente->getId() << " - " << cliente->getNombre() << " " << cliente->getApellido() << ", Direccion: " << cliente->getDireccion() << endl;
-		cliente = cliente->getSiguienteCliente();
-		//cout << "============================================" << endl;
+	}else{
+		while(cliente != NULL){
+			cout <<"\n" << cliente->getId() << " - " << cliente->getNombre() << " " << cliente->getApellido() << ", Direccion: " << cliente->getDireccion() << endl;
+			cliente = cliente->getSiguienteCliente();
+		}
 	}
 }
 

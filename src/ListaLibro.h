@@ -23,6 +23,8 @@ public:
 //	void cambiarEstado(int id);
 	void modificar(int id);
 	Libro* buscarLibro(int id);
+	int obtenerUltimoIdLibro();
+	int buscarLibroPorTitulo(string titulo);
 	Libro* getPrimerElemento();
 	Libro* getUltimoElemento();
 	void setPrimerElemento( Libro* primerElemento);

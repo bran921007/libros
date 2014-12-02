@@ -28,6 +28,8 @@ void ColaOrdenes::listarOrdenes() {
 			cout << "Precio: " << tempOrdenes->getPrecio() << endl;
 			cout << "Cantidad comprada: " << tempOrdenes->getCantidadLibros() << endl;
 			tempOrdenes = tempOrdenes->getSiguienteOrden();
+		}else{
+			tempOrdenes = tempOrdenes->getSiguienteOrden();
 		}
 	}
 }
