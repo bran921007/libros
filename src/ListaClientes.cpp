@@ -115,6 +115,14 @@ Cliente* ListaClientes::buscarCliente(int id) {
 //	return -1;
 }
 
+Cliente* ListaClientes::buscarClientePorNombre(string nombre) {
+	Cliente* tempCliente = primerElemento;
+	while(tempCliente != NULL && tempCliente->getNombre() != nombre){
+		tempCliente = tempCliente->getSiguienteCliente();
+	}
+	return tempCliente;
+}
+
 void ListaClientes::listarClientes() {
 	Cliente* cliente = primerElemento;
 	if(cliente == NULL){

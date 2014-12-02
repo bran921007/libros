@@ -54,7 +54,6 @@ void ColaOrdenes::agregarOrden(Orden* orden) {
 	if(primerElemento == NULL){
 		primerElemento = orden;
 		ultimoElemento = orden;
-		raizHistorial = orden;
 	}else{
 		ultimoElemento->setSiguienteOrden(orden);
 		ultimoElemento = orden;

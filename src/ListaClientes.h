@@ -23,6 +23,7 @@ public:
 	void eliminar(int id);
 	void modificar(int id);
 	Cliente* buscarCliente(int id);
+	Cliente* buscarClientePorNombre(string nombre);
 	Cliente* getPrimerElemento();
 	Cliente* getUltimoElemento();
 	void setPrimerElemento( Cliente* primerElemento);

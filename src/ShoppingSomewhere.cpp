@@ -138,6 +138,18 @@ int main() {
 					}
 						break;*/
 
+
+					case 3:
+						cout << "\nBuscar cliente." << endl;
+						cin >> nombre;
+						Cliente* tempCliente = lista->buscarClientePorNombre(nombre);
+						if(tempCliente == NULL){
+							cout << "\nEl cliente no se encuentra en la lista." << endl;
+						}else{
+							cout <<"\n" << tempCliente->getId() << " - " << tempCliente->getNombre() << " " << tempCliente->getApellido() << ", Direccion: " << tempCliente->getDireccion() << endl;
+						}
+						break;
+
 					case 4:
 
 						lista->listarClientes();
@@ -160,10 +172,7 @@ int main() {
 						break;
 
 					case 6:
-						{
-							//cout <<"Saliendo..." << endl;
-							volverMenu = false;
-						}
+						volverMenu = false;
 						break;
 				}
 			}
@@ -295,6 +304,9 @@ int main() {
 									}
 									Orden* tempOrden = new Orden(tempCliente, tempLibro, precio, cantidad);
 									colaOrdenes->agregarOrden(tempOrden);
+									if(colaOrdenes->getRaizHistorial() == NULL){
+										colaOrdenes->setRaizHistorial(tempOrden);
+									}
 								}else{
 									cout<< "\nNo hay suficientes libros para la orden.\nIntenta nuevamente." << endl;
 									goto introducirCantidad;
